@@ -1,0 +1,10 @@
+.*.swp
+.x.swp
+
+XVim.xcodeproj/xcuserdata/
+XVim.xcodeproj/project.xcworkspace/xcuserdata/
+.DS_Store
+Gemfile.lock
+build
+*.xccheckout
+gitrevision.h
