@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>regex</key>
+		<string>^\s*@s/$</string>
+		<key>replaceContent</key>
+		<string>@property (nonatomic, strong) &lt;#custom#&gt;</string>
+	</dict>
+	<dict>
+		<key>regex</key>
+		<string>^\s*@w/$</string>
+		<key>replaceContent</key>
+		<string>@property (nonatomic, weak) &lt;#custom#&gt;</string>
+	</dict>
+	<dict>
+		<key>regex</key>
+		<string>^\s*@a/$</string>
+		<key>replaceContent</key>
+		<string>@property (nonatomic, assign) &lt;#custom#&gt;</string>
+	</dict>
+	<dict>
+		<key>regex</key>
+		<string>^\s*@c/$</string>
+		<key>replaceContent</key>
+		<string>@property (nonatomic, copy) NSString *&lt;#custom#&gt;</string>
+	</dict>
+	<dict>
+		<key>regex</key>
+		<string>^\s*-\s*\(\s*id\s*\)\s*init\s*//$</string>
+		<key>replaceContent</key>
+		<string>- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        &lt;#statements#&gt;
+    }
+    return self;
+}</string>
+	</dict>
+	<dict>
+		<key>regex</key>
+		<string>^\s*-\s*\(\s*instancetype\s*\)\s*init\s*//$</string>
+		<key>replaceContent</key>
+		<string>- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        &lt;#statements#&gt;
+    }
+    return self;
+}</string>
+	</dict>
+	<dict>
+		<key>regex</key>
+		<string>^\s*--ts$</string>
+		<key>replaceContent</key>
+		<string>- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @&quot;&lt;#CellIdentifier#&gt;&quot;;
+    &lt;#UITableViewCell#&gt; *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = &lt;#[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]#&gt;;
+    }
+    
+    &lt;#custom#&gt;
+    
+    return cell;
+}
+</string>
+	</dict>
+	<dict>
+		<key>regex</key>
+		<string>^\s*--td$</string>
+		<key>replaceContent</key>
+		<string>- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return &lt;#44.0f#&gt;;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    &lt;#custom#&gt;
+}
+</string>
+	</dict>
+	<dict>
+		<key>regex</key>
+		<string>^\s*--bl$</string>
+		<key>replaceContent</key>
+		<string>typedef &lt;#returnType#&gt;(^&lt;#name#&gt;)(&lt;#arguments#&gt;);</string>
+	</dict>
+	<dict>
+		<key>regex</key>
+		<string>^\s*#p$</string>
+		<key>replaceContent</key>
+		<string>#pragma mark - </string>
+	</dict>
+	<dict>
+		<key>regex</key>
+		<string>^\s*--edit$</string>
+		<key>replaceContent</key>
+		<string>//edited by molon : &lt;datetime&gt;</string>
+	</dict>
+	<dict>
+		<key>regex</key>
+		<string>^\s*@[Pp]{2}$</string>
+		<key>replaceContent</key>
+		<string>@protocol &lt;declare_class_below&gt;
+@end</string>
+	</dict>
+	<dict>
+		<key>regex</key>
+		<string>^\s*@property\s*\(\s*nonatomic\s*(,\s*strong\s*|)\)\s*(NSArray|NSMutableArray|NSSet|NSMutableSet)\s*&lt;\s*(\w+)\s*&gt;$</string>
+		<key>replaceContent</key>
+		<string>@property (nonatomic&lt;{0}&gt;) &lt;{1}&gt;&lt;&lt;{2}&gt; *&gt;&lt;&lt;{2}&gt;&gt; *&lt;#name#&gt;</string>
+	</dict>
+	<dict>
+		<key>regex</key>
+		<string>^\s*@property\s*\(\s*nonatomic\s*(,\s*strong\s*|)\)\s*(NSDictionary|NSMutableDictionary)\s*&lt;\s*(\w+)\s*&gt;$</string>
+		<key>replaceContent</key>
+		<string>@property (nonatomic&lt;{0}&gt;) &lt;{1}&gt;&lt;NSString *,&lt;{2}&gt; *&gt;&lt;&lt;{2}&gt;&gt; *&lt;#name#&gt;</string>
+	</dict>
+	<dict>
+		<key>regex</key>
+		<string>([^\s]{1}.*)(NSArray|NSMutableArray|NSSet|NSMutableSet)\s*&lt;\s*(\w+)\s*&gt;(\]|)$</string>
+		<key>replaceContent</key>
+		<string>&lt;{0}&gt;&lt;{1}&gt;&lt;&lt;{2}&gt; *&gt;&lt;&lt;{2}&gt;&gt; </string>
+	</dict>
+	<dict>
+		<key>regex</key>
+		<string>^\s*(NSArray|NSMutableArray|NSSet|NSMutableSet)\s*&lt;\s*(\w+)\s*&gt;$</string>
+		<key>replaceContent</key>
+		<string>&lt;{0}&gt;&lt;&lt;{1}&gt; *&gt;&lt;&lt;{1}&gt;&gt; *</string>
+	</dict>
+	<dict>
+		<key>regex</key>
+		<string>([^\s]{1}.*)(NSDictionary|NSMutableDictionary)\s*&lt;\s*(\w+)\s*&gt;(\]|)$</string>
+		<key>replaceContent</key>
+		<string>&lt;{0}&gt;&lt;{1}&gt;&lt;NSString *,&lt;{2}&gt; *&gt;&lt;&lt;{2}&gt;&gt; </string>
+	</dict>
+	<dict>
+		<key>regex</key>
+		<string>^\s*(NSDictionary|NSMutableDictionary)\s*&lt;\s*(\w+)\s*&gt;$</string>
+		<key>replaceContent</key>
+		<string>&lt;{0}&gt;&lt;NSString *,&lt;{1}&gt; *&gt;&lt;&lt;{1}&gt;&gt; *</string>
+	</dict>
+</array>
+</plist>
